@@ -1,0 +1,14 @@
+{
+  "name": "task-manager-root",
+  "version": "1.0.0",
+  "description": "Team Task Management Web Application",
+  "scripts": {
+    "start": "cd server && node server.js",
+    "build": "cd client && npm install && npm run build && cd ../server && npm install",
+    "dev:server": "cd server && npm run dev",
+    "dev:client": "cd client && npm run dev"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
