@@ -10,7 +10,7 @@ const Projects = () => {
   const { token, user } = useContext(AuthContext);
 
   const fetchProjects = () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
     fetch(`${API_URL}/api/projects`, {
       headers: { 'Authorization': `Bearer ${token}` }
     })
@@ -24,7 +24,7 @@ const Projects = () => {
   const handleCreate = async (e) => {
     e.preventDefault();
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
       await fetch(`${API_URL}/api/projects`, {
         method: 'POST',
         headers: { 
@@ -44,7 +44,7 @@ const Projects = () => {
 
   const handleAddMember = async (projectId, email) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
       const res = await fetch(`${API_URL}/api/projects/${projectId}/members`, {
         method: 'POST',
         headers: { 

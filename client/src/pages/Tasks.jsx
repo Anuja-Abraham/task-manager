@@ -16,7 +16,7 @@ const Tasks = () => {
   const [assignedTo, setAssignedTo] = useState('');
 
   const fetchTasks = async () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
     const res = await fetch(`${API_URL}/api/tasks`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -25,7 +25,7 @@ const Tasks = () => {
   };
 
   const fetchProjects = async () => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
     const res = await fetch(`${API_URL}/api/projects`, {
       headers: { 'Authorization': `Bearer ${token}` }
     });
@@ -44,7 +44,7 @@ const Tasks = () => {
     if (!projectId) return alert("Please create a project first");
     
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
       await fetch(`${API_URL}/api/tasks`, {
         method: 'POST',
         headers: { 
@@ -71,7 +71,7 @@ const Tasks = () => {
 
   const updateTask = async (taskId, updates) => {
     try {
-      const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+      const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
       await fetch(`${API_URL}/api/tasks/${taskId}`, {
         method: 'PUT',
         headers: { 

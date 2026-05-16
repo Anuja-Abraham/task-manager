@@ -8,7 +8,7 @@ const Dashboard = () => {
   const { token } = useContext(AuthContext);
 
   useEffect(() => {
-    const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+    const API_URL = import.meta.env.PROD ? '' : 'http://localhost:5000';
     
     fetch(`${API_URL}/api/projects/dashboard`, {
       headers: { 'Authorization': `Bearer ${token}` }
