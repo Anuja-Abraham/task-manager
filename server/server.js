@@ -27,18 +27,12 @@ if (process.env.NODE_ENV === 'production') {
 const PORT = process.env.PORT || 5000;
 
 async function startServer() {
-  let dbUrl = process.env.DATABASE_URL;
+  const dbUrl = process.env.DATABASE_URL;
 
-  // Use zero-config memory database for local testing if standard localhost is set
-  if (!dbUrl || dbUrl.includes('127.0.0.1')) {
-    try {
-      console.log('Starting in-memory MongoDB for local testing...');
-      const { MongoMemoryServer } = require('mongodb-memory-server');
-      const mongoServer = await MongoMemoryServer.create();
-      dbUrl = mongoServer.getUri();
-    } catch (err) {
-      console.log('Could not start memory server', err);
-    }
+  if (!dbUrl) {
+    console.error('ERROR: DATABASE_URL environment variable is missing.');
+    console.error('Please add your MongoDB connection string to your Railway environment variables, or your local .env file.');
+    process.exit(1);
   }
 
   mongoose.connect(dbUrl)
